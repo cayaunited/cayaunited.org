@@ -1,6 +1,6 @@
 'use client'
 
-import { createTheme, CSSVariablesResolver } from '@mantine/core'
+import { Container, createTheme, CSSVariablesResolver } from '@mantine/core'
 import { Lexend, Righteous } from 'next/font/google'
 
 const lexend = Lexend({
@@ -15,7 +15,7 @@ const righteous = Righteous({
 export const theme = createTheme({
   respectReducedMotion: true,
   fontFamily: lexend.style.fontFamily,
-  headings: { fontFamily: righteous.style.fontFamily },
+  headings: { fontFamily: righteous.style.fontFamily, fontWeight: 'normal' },
   defaultRadius: 'lg',
   primaryColor: 'green',
   primaryShade: { dark: 4, light: 5 },
@@ -57,6 +57,10 @@ export const theme = createTheme({
       '#0079B6',
       '#006DA4',
     ],
+  },
+  
+  components: {
+    Container: Container.extend({ defaultProps: { px: 0 } })
   },
 })
 

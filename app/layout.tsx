@@ -1,10 +1,14 @@
 import '@mantine/core/styles.css'
 
 import { ColorSchemeScript, mantineHtmlProps, MantineProvider } from '@mantine/core'
+
+import AppLayout from '@/components/AppLayout/AppLayout'
+
 import { resolver, theme } from '../theme'
 
 export const metadata = {
   title: 'CAYA United',
+  description: 'Come as you are, develop better, game better, and become better, united as one.',
 }
 
 export default function RootLayout({ children }: { children: any }) {
@@ -22,7 +26,9 @@ export default function RootLayout({ children }: { children: any }) {
         defaultColorScheme="dark"
         theme={theme}
         cssVariablesResolver={resolver}
-      >{children}</MantineProvider>
+      >
+        <AppLayout>{children}</AppLayout>
+      </MantineProvider>
     </body>
   </html>
 }

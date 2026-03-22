@@ -13,6 +13,12 @@ export default withMDX(withBundleAnalyzer({
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
   output: 'export',
   experimental: {
-    optimizePackageImports: ['@mantine/core', '@mantine/hooks'],
+    optimizePackageImports: [
+      '@mantine/core',
+      '@mantine/hooks',
+      '@fortawesome/react-fontawesome@latest',
+      '@fortawesome/fontawesome-svg-core',
+      '@fortawesome/free-solid-svg-icons',
+    ],
   },
 }))

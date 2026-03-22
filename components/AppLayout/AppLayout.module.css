@@ -1,0 +1,12 @@
+.header {
+  height: 100%;
+  padding: 0 1rem;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.header-name {
+  font-family: var(--mantine-font-family-headings);
+  color: var(--mantine-color-text);
+  text-decoration: none;
+}
