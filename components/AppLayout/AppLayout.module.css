@@ -1,6 +1,6 @@
 .header {
   height: 100%;
-  padding: 0 1rem;
+  padding-left: 1rem;
   justify-content: space-between;
   flex: 1;
 }
@@ -9,4 +9,14 @@
   font-family: var(--mantine-font-family-headings);
   color: var(--mantine-color-text);
   text-decoration: none;
+}
+
+.header-link {
+  height: 100%;
+  border-radius: 0;
+}
+
+.header-link,
+.navbar-link {
+  transition: background-color 0.25s;
 }

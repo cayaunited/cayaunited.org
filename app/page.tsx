@@ -1,6 +1,9 @@
+'use client'
+
 import { DoorOpenIcon, HandHelpingIcon, HealthIcon, Rocket01Icon, SunriseIcon, UserGroupIcon, WalkingIcon } from '@hugeicons/core-free-icons'
 import { HugeiconsIcon } from '@hugeicons/react'
 import { Box, Button, Container, Grid, GridCol, Group, Image, rem, Space, Text, Title } from '@mantine/core'
+import Link from 'next/link'
 
 import MissionVisionSection from '@/components/MissionVisionSection/MissionVisionSection'
 
@@ -73,7 +76,7 @@ export default function Page() {
   ]
   
   return <Container size="lg">
-    <Box className={classes.hero} mt="-1rem">
+    <Box className={classes.hero} mt="-1rem" py="xl">
       <Grid gap="xl" className={classes['hero-grid']} align="center">
         <GridCol span={{ base: 12, sm: 6 }} order={{ base: 1, sm: 2 }}>
           <Image
@@ -112,20 +115,31 @@ export default function Page() {
             .
           </Title>
           <Group>
-            <Button c="black" size="md" {...gradientProps} rightSection={<HugeiconsIcon icon={Rocket01Icon} />}>Start Your Journey</Button>
+            <Button
+              component={Link}
+              href="/courses"
+              role="link"
+              c="black"
+              size="md"
+              className={classes['start-button']}
+              {...gradientProps}
+              rightSection={<HugeiconsIcon icon={Rocket01Icon} />}
+            >
+              Start Your Journey
+            </Button>
           </Group>
         </GridCol>
       </Grid>
     </Box>
     
-    <Box className={classes.hero} mb="-1rem">
+    <Box className={classes.hero} mb="-1rem" py={{ base: 'md', sm: 'xl' }}>
       <MissionVisionSection
         title="Mission"
         description="Welcome people in as they are, cross dividing barriers, and walk with them on their transformative journey to become the beautiful masterpieces they were made to be."
         cards={missionCards}
         color="blue"
       />
-      <Space my="xl" />
+      <Space my={{ base: 'md', sm: 'xl' }} />
       <MissionVisionSection
         title="Vision"
         description="Bring people the help they need for today, the healing they need from yesterday, and the hope they need for tomorrow."

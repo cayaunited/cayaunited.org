@@ -1,6 +1,6 @@
 'use client'
 
-import { AppShell, Burger, Group, Image, rem, Text, useMatches } from '@mantine/core'
+import { AppShell, Burger, Button, Group, Image, NavLink, rem, Text, useMatches } from '@mantine/core'
 import { useDisclosure, useHeadroom } from '@mantine/hooks'
 import { MotionConfig } from 'motion/react'
 import Link from 'next/link'
@@ -12,6 +12,21 @@ export default function AppLayout({ children }: { children: ReactNode }) {
   const { pinned: isHeaderVisible } = useHeadroom()
   const shouldPinHeader = useMatches({ base: true, sm: false })
   const [isNavigationOpened, { toggle: toggleNavigation }] = useDisclosure()
+  
+  const links = [
+    {
+      url: '/courses',
+      label: 'Courses',
+    },
+    {
+      url: '/ground-zero',
+      label: 'Ground Zero',
+    },
+    {
+      url: '/reprogram-your-soul',
+      label: 'Reprogram Your Soul',
+    },
+  ]
   
   return <MotionConfig reducedMotion="user">
     <AppShell
@@ -33,15 +48,35 @@ export default function AppLayout({ children }: { children: ReactNode }) {
               CAYA United
             </Text>
           </Group>
-          <Group ml="xl" gap={0} visibleFrom="sm">
-            
+          <Group gap={0} visibleFrom="sm" h="100%">
+            {
+              links.map((link) => (
+                <Button
+                  key={link.url}
+                  component={Link}
+                  href={link.url}
+                  role="link"
+                  variant="subtle"
+                  className={classes['header-link']}
+                  color="gray"
+                  h="100%"
+                  radius={0}
+                >
+                  {link.label}
+                </Button>
+              ))
+            }
           </Group>
-          <Burger opened={isNavigationOpened} onClick={toggleNavigation} hiddenFrom="sm" size="sm" />
+          <Burger opened={isNavigationOpened} onClick={toggleNavigation} hiddenFrom="sm" size="sm" mr="md" />
         </Group>
       </AppShell.Header>
       
       <AppShell.Navbar bd="none">
-        
+        {
+          links.map((link) => (
+            <NavLink key={link.url} component={Link} href={link.url} className={classes['navbar-link']} label={link.label} />
+          ))
+        }
       </AppShell.Navbar>
       
       <AppShell.Main>{children}</AppShell.Main>

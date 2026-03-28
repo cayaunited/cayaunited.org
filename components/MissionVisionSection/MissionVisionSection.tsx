@@ -27,7 +27,7 @@ export default function MissionVisionSection({ title, description, color, cards 
             >
               <Group justify="space-between" align="center" mb="md">
                 <Title order={3}>{card.title}</Title>
-                <HugeiconsIcon icon={card.icon} size="3rem" color={`var(--mantine-color-${color}-text)`} />
+                <HugeiconsIcon icon={card.icon} size="3rem" color={`var(--mantine-color-${color}-text)`} aria-hidden />
               </Group>
               {card.description}
             </Card>
