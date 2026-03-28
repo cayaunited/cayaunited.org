@@ -1,14 +1,19 @@
-import mantine from 'eslint-config-mantine'
 import { defineConfig } from 'eslint/config'
-import tseslint from 'typescript-eslint'
+import nextVitals from 'eslint-config-next/core-web-vitals'
 
-// @ts-check
 export default defineConfig(
-  tseslint.configs.recommended,
-  ...mantine,
-  { ignores: ['**/*.{mjs,cjs,js,d.ts,d.mts}', '.next'] },
+  ...nextVitals,
   {
-    rules: { 'no-console': 'off' },
+    ignores: ['**/*.{mjs,cjs,js,d.ts,d.mts}', '.next'],
+  },
+  {
+    rules: {
+      'no-console': 'off',
+      'curly': 'off',
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-unused-vars': 'warn',
+      'react/no-unescaped-entities': 'off',
+    },
   },
   {
     languageOptions: {

@@ -5,9 +5,12 @@
     "dev": "next dev",
     "build": "next build",
     "analyze": "ANALYZE=true next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "eslint ."
   },
   "dependencies": {
+    "@hugeicons/core-free-icons": "^4.0.0",
+    "@hugeicons/react": "^1.1.6",
     "@mantine/core": "9.0.0-alpha.6",
     "@mantine/hooks": "9.0.0-alpha.6",
     "@mdx-js/loader": "^3.1.1",
@@ -16,6 +19,7 @@
     "@next/mdx": "^16.2.1",
     "@tabler/icons-react": "^3.40.0",
     "@types/mdx": "^2.0.13",
+    "motion": "^12.38.0",
     "next": "^16.2.1",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
@@ -23,14 +27,13 @@
   "devDependencies": {
     "@babel/core": "^7.29.0",
     "@eslint/eslintrc": "^3.3.5",
-    "@eslint/js": "^10.0.1",
+    "@eslint/js": "^9.39.4",
     "@types/eslint-plugin-jsx-a11y": "^6.10.1",
     "@types/node": "^25.5.0",
     "@types/react": "^19.2.14",
     "babel-loader": "^10.1.1",
     "babel-plugin-react-compiler": "^1.0.0",
-    "eslint": "^10.1.0",
-    "eslint-config-mantine": "^4.0.3",
+    "eslint": "^9.39.4",
     "eslint-config-next": "^16.2.1",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.37.5",

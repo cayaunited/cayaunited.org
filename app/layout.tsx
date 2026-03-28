@@ -1,6 +1,7 @@
 import '@mantine/core/styles.css'
 
 import { ColorSchemeScript, mantineHtmlProps, MantineProvider } from '@mantine/core'
+import { ReactNode } from 'react'
 
 import AppLayout from '@/components/AppLayout/AppLayout'
 
@@ -11,7 +12,7 @@ export const metadata = {
   description: 'Come as you are, develop better, game better, and become better, united as one.',
 }
 
-export default function RootLayout({ children }: { children: any }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return <html lang="en" {...mantineHtmlProps}>
     <head>
       <ColorSchemeScript />
