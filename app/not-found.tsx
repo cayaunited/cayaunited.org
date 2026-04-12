@@ -18,7 +18,7 @@ export default function NotFound() {
     <Text ta="center">
       <Anchor component={Link} href="/">Home</Anchor>
       {' | '}
-      <Anchor component={Link} href="/courses">Courses</Anchor>
+      <Anchor component={Link} href="/ground-zero">Ground Zero</Anchor>
     </Text>
   </Box>
 }

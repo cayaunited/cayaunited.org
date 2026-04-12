@@ -117,7 +117,7 @@ export default function Page() {
           <Group>
             <Button
               component={Link}
-              href="/courses"
+              href="/ground-zero"
               role="link"
               c="black"
               size="md"
