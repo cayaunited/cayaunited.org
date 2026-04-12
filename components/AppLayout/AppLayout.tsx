@@ -3,21 +3,24 @@
 import { AppShell, Burger, Button, Group, Image, NavLink, rem, Text, useMatches } from '@mantine/core'
 import { useDisclosure, useHeadroom } from '@mantine/hooks'
 import Link from 'next/link'
-import { ReactNode } from 'react'
+import { usePathname } from 'next/navigation'
+import { ReactNode, useState } from 'react'
+
+import { CourseLinkMetadata } from '@/utilities/types'
 
 import classes from './AppLayout.module.css'
 
-export default function AppLayout({ children }: { children: ReactNode }) {
+export default function AppLayout({ children, courseLinks }: { children: ReactNode, courseLinks: CourseLinkMetadata[] }) {
   const { pinned: isHeaderVisible } = useHeadroom()
   const shouldPinHeader = useMatches({ base: true, sm: false })
-  const [isNavigationOpened, { toggle: toggleNavigation }] = useDisclosure()
+  const [isNavigationOpened, { toggle: toggleNavigation, close: closeNavigation }] = useDisclosure()
+  const pathname = usePathname()
+  const [previousPathname, setPreviousPathname] = useState(pathname)
   
-  const links = [
-    {
-      url: '/ground-zero',
-      label: 'Ground Zero',
-    },
-  ]
+  if (pathname !== previousPathname) {
+    setPreviousPathname(pathname)
+    if (isNavigationOpened) closeNavigation()
+  }
   
   return <AppShell
     header={{ height: 60, collapsed: shouldPinHeader && !isHeaderVisible }}
@@ -25,7 +28,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
     padding="md"
   >
     <AppShell.Header style={{ borderBottomWidth: '0.125rem' }}>
-      <Group className={classes.header}>
+      <Group className={classes.header} justify="space-between">
         <Group>
           <Link href="/">
             <Image
@@ -40,7 +43,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
         </Group>
         <Group gap={0} visibleFrom="sm" h="100%">
           {
-            links.map((link) => (
+            courseLinks.map((link) => (
               <Button
                 key={link.url}
                 component={Link}
@@ -49,6 +52,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
                 variant="subtle"
                 className={classes['header-link']}
                 color="gray"
+                c={pathname.startsWith(link.url) ? 'green' : undefined}
                 h="100%"
                 radius={0}
               >
@@ -63,8 +67,27 @@ export default function AppLayout({ children }: { children: ReactNode }) {
     
     <AppShell.Navbar bd="none">
       {
-        links.map((link) => (
-          <NavLink key={link.url} component={Link} href={link.url} className={classes['navbar-link']} label={link.label} />
+        courseLinks.map((courseLink) => (
+          <NavLink
+            key={courseLink.url}
+            component={Link}
+            href={courseLink.url}
+            className={classes['navbar-link']}
+            label={courseLink.label}
+            active={pathname.startsWith(courseLink.url)}
+          >
+            {courseLink.lessonLinks.length > 0 && courseLink.lessonLinks.map((lessonLink) => (
+              <NavLink
+                key={lessonLink.url}
+                component={Link}
+                href={lessonLink.url}
+                className={classes['navbar-link']}
+                label={lessonLink.label}
+                active={pathname === lessonLink.url}
+                color="blue"
+              />
+            ))}
+          </NavLink>
         ))
       }
     </AppShell.Navbar>

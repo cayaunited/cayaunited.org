@@ -1,8 +1,6 @@
 .header {
   height: 100%;
   padding-left: 1rem;
-  justify-content: space-between;
-  flex: 1;
 }
 
 .header-name {

@@ -1,18 +1,40 @@
-import '@mantine/core/styles.css'
-
 import { ColorSchemeScript, mantineHtmlProps, MantineProvider } from '@mantine/core'
 import { ReactNode } from 'react'
 
 import AppLayout from '@/components/AppLayout/AppLayout'
+import { resolver, theme } from '@/theme'
+import getCourse from '@/utilities/getCourse'
+import getLesson from '@/utilities/getLesson'
+import { getStaticCourseParams, getStaticLessonParams } from '@/utilities/getStaticParams'
+import { CourseLinkMetadata, LinkMetadata } from '@/utilities/types'
 
-import { resolver, theme } from '../theme'
+import '@mantine/core/styles.css'
 
 export const metadata = {
   title: 'CAYA United',
   description: 'Come as you are, develop better, game better, and become better, united as one.',
 }
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default async function RootLayout({ children }: { children: ReactNode }) {
+  const courses = await getStaticCourseParams()
+  const courseLinks: CourseLinkMetadata[] = []
+  
+  for (const course of courses) {
+    const { courseID } = course
+    const lessons = await getStaticLessonParams(courseID)
+    const lessonLinks: LinkMetadata[] = lessons.length > 0 ? [{ url: `/${courseID}`, label: 'Home' }] : []
+    
+    for (const lesson of lessons) {
+      const { lessonID } = lesson
+      const lessonData = await getLesson(courseID, lessonID)
+      if (!lessonData) continue
+      lessonLinks.push({ url: `/${courseID}/${lessonID}`, label: lessonData.metadata.title })
+    }
+    
+    const courseData = await getCourse(courseID)
+    if (courseData) courseLinks.push({ url: `/${courseID}`, label: courseData.metadata.title, lessonLinks })
+  }
+  
   return <html lang="en" {...mantineHtmlProps}>
     <head>
       <ColorSchemeScript />
@@ -28,7 +50,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         theme={theme}
         cssVariablesResolver={resolver}
       >
-        <AppLayout>{children}</AppLayout>
+        <AppLayout courseLinks={courseLinks}>{children}</AppLayout>
       </MantineProvider>
     </body>
   </html>
