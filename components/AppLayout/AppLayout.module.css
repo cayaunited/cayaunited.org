@@ -4,7 +4,6 @@
 }
 
 .header-name {
-  font-family: var(--mantine-font-family-headings);
   color: var(--mantine-color-text);
   text-decoration: none;
 }
@@ -18,3 +17,11 @@
 .navbar-link {
   transition: background-color 0.25s;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .header-link,
+  .navbar-link {
+    transition: none;
+  }
+}
+

@@ -6,6 +6,7 @@ import { Box, Button, Container, Grid, GridCol, Group, Image, rem, Space, Text, 
 import Link from 'next/link'
 
 import MissionVisionSection from '@/components/MissionVisionSection/MissionVisionSection'
+import { righteous } from '@/theme'
 
 import classes from './page.module.css'
 
@@ -109,7 +110,7 @@ export default function Page() {
             Welcome,
             <br />
             to&nbsp;
-            <Text span fz="inherit" {...gradientProps}>
+            <Text span className={righteous.className} fz="inherit" {...gradientProps}>
               CAYA United
             </Text>
             .

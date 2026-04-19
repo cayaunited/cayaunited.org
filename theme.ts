@@ -1,21 +1,26 @@
 'use client'
 
-import { Button, Container, createTheme, CSSVariablesResolver } from '@mantine/core'
-import { Lexend, Righteous } from 'next/font/google'
+import { Button, Container, createTheme, CSSVariablesResolver, Divider } from '@mantine/core'
+import { CodeHighlight, CodeHighlightAdapter, stripShikiCodeBlocks } from '@mantine/code-highlight'
+import { Atkinson_Hyperlegible_Mono, Lexend, Righteous } from 'next/font/google'
 
-const lexend = Lexend({
-  subsets: ['latin'],
-})
+import classes from '@/common.module.css'
+import { BundledLanguage, BundledTheme, CodeToHastOptions } from 'shiki'
 
-const righteous = Righteous({
+const lexend = Lexend({ subsets: ['latin'] })
+
+export const righteous = Righteous({
   subsets: ['latin'],
   weight: '400',
 })
 
+const atkinson = Atkinson_Hyperlegible_Mono({ subsets: ['latin'] })
+
 export const theme = createTheme({
   respectReducedMotion: true,
   fontFamily: lexend.style.fontFamily,
-  headings: { fontFamily: righteous.style.fontFamily, fontWeight: 'normal' },
+  fontFamilyMonospace: atkinson.style.fontFamily,
+  headings: { fontFamily: lexend.style.fontFamily, fontWeight: 'normal' },
   defaultRadius: 'lg',
   autoContrast: true,
   primaryColor: 'green',
@@ -62,7 +67,9 @@ export const theme = createTheme({
   
   components: {
     Button: Button.extend({ defaultProps: { fw: 400 } }),
+    CodeHighlight: CodeHighlight.extend({ defaultProps: { className: classes.code } }),
     Container: Container.extend({ defaultProps: { px: 0 } }),
+    Divider: Divider.extend({ defaultProps: { size: 'sm' } })
   },
 })
 
@@ -81,3 +88,44 @@ export const resolver: CSSVariablesResolver = () => ({
     '--mantine-color-blue-outline-hover': 'rgb(0, 170, 255, 0.05)',
   },
 })
+
+async function loadShiki() {
+  const { createHighlighter } = await import('shiki')
+  
+  const shiki = await createHighlighter({
+    langs: ['csharp'],
+    themes: ['light-plus', 'dark-plus'],
+  })
+  
+  return shiki
+}
+
+export const shikiAdapter: CodeHighlightAdapter = {
+  loadContext: loadShiki,
+  getHighlighter: (ctx) => {
+    if (!ctx) return ({ code }) => ({ highlightedCode: code, isHighlighted: false })
+    
+    return ({ code, language, colorScheme }) => ({
+      isHighlighted: true,
+      highlightedCode: stripShikiCodeBlocks(
+        ctx.codeToHtml(code, {
+          lang: language,
+          theme: colorScheme === 'light' ? 'light-plus' : 'dark-plus',
+          colorReplacements: {
+            'dark-plus': {
+              '#c586c0': '#e3bdff',
+              '#4ec9b0': '#80ffca',
+              '#569cd6': '#80d4ff',
+              '#9cdcfe': '#dadcdf',
+              '#dcdcaa': '#ffffbf',
+              '#b5cea8': '#ffbf80',
+              '#808080': '#afb1b3',
+              '#6a9955': '#afb1b3',
+              '#cd9178': '#e3cbaa',
+            },
+          },
+        } as CodeToHastOptions<BundledLanguage, BundledTheme>)
+      ),
+    })
+  },
+}

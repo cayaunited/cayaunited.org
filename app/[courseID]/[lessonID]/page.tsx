@@ -1,4 +1,4 @@
-import { Container, Text, Title } from '@mantine/core'
+import { AspectRatio, Container, Divider, Group, Text, Title } from '@mantine/core'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
@@ -47,10 +47,26 @@ export default async function Page({ params }: { params: Promise<LessonParams> }
   const { LessonContent, metadata } = lesson
   const { title, description, lastUpdated } = metadata
   
-  return <Container>
+  return <Container mb="-1rem">
     <Title order={1}>{title}</Title>
     <Text mb="md">Last updated on {lastUpdated}</Text>
-    <Text className={classes['text-wrap-pretty']}>{description}</Text>
+    <Text className={classes['text-wrap-pretty']} mb="md">{description}</Text>
+    <Divider mb="md" />
+    
+    {/* <Group justify="center" mb="md">
+      
+    </Group> */}
+    <AspectRatio ratio={1920 / 1080} mx="auto" mb="md">
+      <iframe
+        className={classes.video}
+        src="https://www.youtube-nocookie.com/embed/K1-FoFj8Jbo?si=wXnbjkhYB49cMdY5"
+        title="YouTube video player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerPolicy="strict-origin-when-cross-origin"
+        allowFullScreen
+      />
+    </AspectRatio>
+    
     <LessonContent />
   </Container>
 }

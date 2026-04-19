@@ -1,4 +1,5 @@
 import { ColorSchemeScript, mantineHtmlProps, MantineProvider } from '@mantine/core'
+import { Metadata } from 'next'
 import { ReactNode } from 'react'
 
 import AppLayout from '@/components/AppLayout/AppLayout'
@@ -9,8 +10,9 @@ import { getStaticCourseParams, getStaticLessonParams } from '@/utilities/getSta
 import { CourseLinkMetadata, LinkMetadata } from '@/utilities/types'
 
 import '@mantine/core/styles.css'
+import '@mantine/code-highlight/styles.css'
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'CAYA United',
   description: 'Come as you are, develop better, game better, and become better, united as one.',
 }

@@ -16,10 +16,10 @@ export default withMDX(withBundleAnalyzer({
     optimizePackageImports: [
       '@mantine/core',
       '@mantine/hooks',
-      '@fortawesome/react-fontawesome@latest',
-      '@fortawesome/fontawesome-svg-core',
-      '@fortawesome/free-solid-svg-icons',
-      'motion',
+      '@mantine/code-highlight',
+      'shiki',
+      '@hugeicons/core-free-icons',
+      '@hugeicons/react',
     ],
   },
 }))
