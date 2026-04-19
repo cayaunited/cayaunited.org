@@ -20,7 +20,7 @@ export const theme = createTheme({
   respectReducedMotion: true,
   fontFamily: lexend.style.fontFamily,
   fontFamilyMonospace: atkinson.style.fontFamily,
-  headings: { fontFamily: lexend.style.fontFamily, fontWeight: 'normal' },
+  headings: { fontFamily: lexend.style.fontFamily },
   defaultRadius: 'lg',
   autoContrast: true,
   primaryColor: 'green',

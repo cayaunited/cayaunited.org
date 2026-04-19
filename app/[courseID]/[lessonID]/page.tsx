@@ -1,4 +1,4 @@
-import { AspectRatio, Container, Divider, Group, Text, Title } from '@mantine/core'
+import { Container } from '@mantine/core'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
@@ -6,7 +6,8 @@ import getCourse from '@/utilities/getCourse'
 import getLesson from '@/utilities/getLesson'
 import { getStaticCourseParams, getStaticLessonParams } from '@/utilities/getStaticParams'
 
-import classes from '@/common.module.css'
+import LessonHeader from '@/components/LessonHeader/LessonHeader'
+import LessonFooter from '@/components/LessonFooter/LessonFooter'
 
 interface LessonParams { courseID: string, lessonID: string }
 
@@ -42,31 +43,23 @@ export async function generateStaticParams() {
 
 export default async function Page({ params }: { params: Promise<LessonParams> }) {
   const { courseID, lessonID } = await params
+  const course = await getCourse(courseID)
+  if (!course) notFound()
   const lesson = await getLesson(courseID, lessonID)
   if (!lesson) notFound()
   const { LessonContent, metadata } = lesson
-  const { title, description, lastUpdated } = metadata
+  const { nextURL, previousURL } = metadata
+  const previousLesson = previousURL ? await getLesson(courseID, previousURL) : null
+  const nextLesson = nextURL ? await getLesson(courseID, nextURL) : null
   
-  return <Container mb="-1rem">
-    <Title order={1}>{title}</Title>
-    <Text mb="md">Last updated on {lastUpdated}</Text>
-    <Text className={classes['text-wrap-pretty']} mb="md">{description}</Text>
-    <Divider mb="md" />
-    
-    {/* <Group justify="center" mb="md">
-      
-    </Group> */}
-    <AspectRatio ratio={1920 / 1080} mx="auto" mb="md">
-      <iframe
-        className={classes.video}
-        src="https://www.youtube-nocookie.com/embed/K1-FoFj8Jbo?si=wXnbjkhYB49cMdY5"
-        title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerPolicy="strict-origin-when-cross-origin"
-        allowFullScreen
-      />
-    </AspectRatio>
-    
+  return <Container>
+    <LessonHeader course={course.metadata} lesson={lesson.metadata} />
     <LessonContent />
+    <LessonFooter
+      course={course.metadata}
+      lesson={lesson.metadata}
+      previousLesson={previousLesson?.metadata.title}
+      nextLesson={nextLesson?.metadata.title}
+    />
   </Container>
 }
