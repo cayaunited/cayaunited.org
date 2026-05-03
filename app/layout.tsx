@@ -1,9 +1,9 @@
-import { ColorSchemeScript, mantineHtmlProps, MantineProvider } from '@mantine/core'
+import { ColorSchemeScript, mantineHtmlProps } from '@mantine/core'
 import { Metadata } from 'next'
 import { ReactNode } from 'react'
 
 import AppLayout from '@/components/AppLayout/AppLayout'
-import { resolver, theme } from '@/theme'
+import MantineWrapper from '@/components/MantineWrapper/MantineWrapper'
 import getCourse from '@/utilities/getCourse'
 import getLesson from '@/utilities/getLesson'
 import { getStaticCourseParams, getStaticLessonParams } from '@/utilities/getStaticParams'
@@ -47,13 +47,9 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
       />
     </head>
     <body>
-      <MantineProvider
-        defaultColorScheme="dark"
-        theme={theme}
-        cssVariablesResolver={resolver}
-      >
+      <MantineWrapper>
         <AppLayout courseLinks={courseLinks}>{children}</AppLayout>
-      </MantineProvider>
+      </MantineWrapper>
     </body>
   </html>
 }

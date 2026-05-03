@@ -15,3 +15,18 @@
 .video {
   border: none;
 }
+
+.segmented-control-label {
+  cursor: default;
+}
+
+.action-icon[data-variant="outline"],
+.button[data-variant="outline"],
+.input,
+.radio input {
+  border-width: 0.125rem!important;
+}
+
+.number-control {
+  border-inline-start-width: 0.125rem!important;
+}

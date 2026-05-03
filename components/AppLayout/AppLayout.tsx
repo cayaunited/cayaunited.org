@@ -7,9 +7,11 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ReactNode, useState } from 'react'
 
-import { righteous, shikiAdapter } from '@/theme'
+import { righteous } from '@/fonts'
+import { shikiAdapter } from '@/theme'
 import { CourseLinkMetadata } from '@/utilities/types'
 
+import CustomizationMenu from './CustomizationMenu/CustomizationMenu'
 import classes from './AppLayout.module.css'
 
 export default function AppLayout({ children, courseLinks }: { children: ReactNode, courseLinks: CourseLinkMetadata[] }) {
@@ -44,7 +46,7 @@ export default function AppLayout({ children, courseLinks }: { children: ReactNo
               CAYA United
             </Text>
           </Group>
-          <Group gap={0} visibleFrom="sm" h="100%">
+          <Group gap={0} h="100%">
             {
               courseLinks.map((link) => (
                 <Button
@@ -52,6 +54,7 @@ export default function AppLayout({ children, courseLinks }: { children: ReactNo
                   component={Link}
                   href={link.url}
                   role="link"
+                  visibleFrom="sm"
                   variant="subtle"
                   className={classes['header-link']}
                   color="gray"
@@ -63,8 +66,9 @@ export default function AppLayout({ children, courseLinks }: { children: ReactNo
                 </Button>
               ))
             }
+            <CustomizationMenu />
+            <Burger opened={isNavigationOpened} onClick={toggleNavigation} hiddenFrom="sm" size="sm" mr="md" />
           </Group>
-          <Burger opened={isNavigationOpened} onClick={toggleNavigation} hiddenFrom="sm" size="sm" mr="md" />
         </Group>
       </AppShell.Header>
       

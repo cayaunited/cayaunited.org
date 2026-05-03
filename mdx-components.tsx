@@ -9,7 +9,7 @@ const components: MDXComponents = {
   h4: ({ children }) => <Title order={4} mb="xs">{children}</Title>,
   h5: ({ children }) => <Title order={5} mb="xs">{children}</Title>,
   h6: ({ children }) => <Title order={6} mb="xs">{children}</Title>,
-  p: ({ children }) => <Text mb="md">{children}</Text>,
+  p: ({ children }) => <Text mb="var(--paragraph-bottom-margin)">{children}</Text>,
   a: (props) => <Anchor href={props.href} target="_blank" {...(props as AnchorProps)} />,
   // eslint-disable-next-line jsx-a11y/alt-text
   img: (props) => <Image mb="md" {...(props as ImageProps)} />,

@@ -1,26 +1,16 @@
 'use client'
 
-import { Button, Container, createTheme, CSSVariablesResolver, Divider } from '@mantine/core'
+import { Container, createTheme, Divider, Input, NumberInput, Radio } from '@mantine/core'
 import { CodeHighlight, CodeHighlightAdapter, stripShikiCodeBlocks } from '@mantine/code-highlight'
-import { Atkinson_Hyperlegible_Mono, Lexend, Righteous } from 'next/font/google'
-
-import classes from '@/common.module.css'
 import { BundledLanguage, BundledTheme, CodeToHastOptions } from 'shiki'
 
-const lexend = Lexend({ subsets: ['latin'] })
+import { atkinsonMono } from '@/fonts'
 
-export const righteous = Righteous({
-  subsets: ['latin'],
-  weight: '400',
-})
-
-const atkinson = Atkinson_Hyperlegible_Mono({ subsets: ['latin'] })
+import classes from '@/common.module.css'
 
 export const theme = createTheme({
   respectReducedMotion: true,
-  fontFamily: lexend.style.fontFamily,
-  fontFamilyMonospace: atkinson.style.fontFamily,
-  headings: { fontFamily: lexend.style.fontFamily },
+  fontFamilyMonospace: atkinsonMono.style.fontFamily,
   defaultRadius: 'lg',
   autoContrast: true,
   primaryColor: 'green',
@@ -66,26 +56,12 @@ export const theme = createTheme({
   },
   
   components: {
-    Button: Button.extend({ defaultProps: { fw: 400 } }),
     CodeHighlight: CodeHighlight.extend({ defaultProps: { className: classes.code } }),
     Container: Container.extend({ defaultProps: { px: 0 } }),
-    Divider: Divider.extend({ defaultProps: { size: 'sm' } })
-  },
-})
-
-export const resolver: CSSVariablesResolver = () => ({
-  variables: {
-    
-  },
-  light: {
-    
-  },
-  dark: {
-    '--mantine-color-body': 'var(--mantine-color-dark-9)',
-    '--mantine-color-green-outline': 'var(--mantine-color-green-4)',
-    '--mantine-color-green-outline-hover': 'rgb(0, 255, 149, 0.05)',
-    '--mantine-color-blue-outline': 'var(--mantine-color-blue-4)',
-    '--mantine-color-blue-outline-hover': 'rgb(0, 170, 255, 0.05)',
+    Divider: Divider.extend({ defaultProps: { size: 'sm' } }),
+    Input: Input.extend({ classNames: { input: classes.input } }),
+    NumberInput: NumberInput.extend({ classNames: { input: classes.input, control: classes['number-control'] } }),
+    Radio: Radio.extend({ classNames: { inner: classes.radio } })
   },
 })
 

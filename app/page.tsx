@@ -6,7 +6,7 @@ import { Box, Button, Container, Grid, GridCol, Group, Image, rem, Space, Text, 
 import Link from 'next/link'
 
 import MissionVisionSection from '@/components/MissionVisionSection/MissionVisionSection'
-import { righteous } from '@/theme'
+import { righteous } from '@/fonts'
 
 import classes from './page.module.css'
 
