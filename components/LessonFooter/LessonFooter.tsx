@@ -14,7 +14,7 @@ export default function LessonFooter({ course, lesson, previousLesson, nextLesso
   const courseLink = course.link
   const { nextURL, previousURL } = lesson
   
-  return <Group justify="space-between" align="center">
+  return <Group justify="space-between" align="center" mt={`calc(${previousURL || nextURL ? '1rem' : '0rem'} - var(--paragraph-bottom-margin))`}>
     {previousURL && (
       <Anchor component={Link} href={`${courseLink}/${previousURL}`} className={classes['lesson-link-left']}>
         <HugeiconsIcon icon={ArrowLeft02Icon} size="1rem" aria-hidden />

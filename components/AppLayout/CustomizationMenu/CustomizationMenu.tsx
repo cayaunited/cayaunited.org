@@ -39,7 +39,7 @@ export default function CustomizationMenu() {
     setLetterSpacing(typeof previewLetterSpacing === 'number' ? previewLetterSpacing : 0.12)
     setWordSpacing(typeof previewWordSpacing === 'number' ? previewWordSpacing : 0.16)
     setParagraphSpacing(typeof previewParagraphSpacing === 'number' ? previewParagraphSpacing : 2)
-    open()
+    close()
   }
   
   return <>
@@ -53,7 +53,7 @@ export default function CustomizationMenu() {
       closeButtonProps={{ autoFocus: true }}
       size="lg"
     >
-      <Text id="color-theme-label" size="sm" fw="bold" mb="xs" className={classes['segmented-control-label']}>Color Theme</Text>
+      <Text id="color-theme-label" fw="bold" mb="xs" className={classes['segmented-control-label']}>Color Theme</Text>
       <SegmentedControl
         aria-labelledby="color-theme-label"
         withItemsBorders={false}
@@ -64,7 +64,7 @@ export default function CustomizationMenu() {
           {
             value: 'auto',
             label: (
-              <Center style={{ gap: 10 }}>
+              <Center style={{ gap: 10 }} fz="md">
                 <HugeiconsIcon icon={ComputerSettingsIcon} aria-hidden />
                 <span>Auto</span>
               </Center>
@@ -73,7 +73,7 @@ export default function CustomizationMenu() {
           {
             value: 'dark',
             label: (
-              <Center style={{ gap: 10 }}>
+              <Center style={{ gap: 10 }} fz="md">
                 <HugeiconsIcon icon={Moon02Icon} aria-hidden />
                 <span>Dark</span>
               </Center>
@@ -82,7 +82,7 @@ export default function CustomizationMenu() {
           {
             value: 'light',
             label: (
-              <Center style={{ gap: 10 }}>
+              <Center style={{ gap: 10 }} fz="md">
                 <HugeiconsIcon icon={Sun03Icon} aria-hidden />
                 <span>Light</span>
               </Center>
@@ -92,7 +92,7 @@ export default function CustomizationMenu() {
       />
       
       <Radio.Group
-        label="Font Family"
+        label={<Text fw="bold">Font Family</Text>}
         mb="md"
         value={previewFontFamily}
         onChange={setPreviewFontFamily}
@@ -152,7 +152,7 @@ export default function CustomizationMenu() {
         onChange={setPreviewParagraphSpacing}
       />
       
-      <Title order={5}>Preview Text</Title>
+      <Title order={3}>Preview Text</Title>
       <Text
         style={{
           fontFamily: selectedFont,
