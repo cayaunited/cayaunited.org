@@ -12,9 +12,13 @@ export interface LessonMetadata {
   lastUpdated: string
   orderInCourse: number
   videoURL?: string
+  thumbnailURL?: string
+  thumbnailAltText?: string
   previousURL?: string
   nextURL?: string
 }
+
+export type ExtendedLessonMetadata = LessonMetadata & { courseID: string, lessonID: string, url: string }
 
 export interface LinkMetadata {
   url: string

@@ -1,5 +1,5 @@
 .text-wrap-pretty {
-  text-wrap: balance;
+  text-wrap: balance!important;
 }
 
 .code button {

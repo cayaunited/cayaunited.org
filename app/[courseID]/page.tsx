@@ -6,7 +6,7 @@ import LessonCard from '@/components/LessonCard/LessonCard'
 import getCourse from '@/utilities/getCourse'
 import getLesson from '@/utilities/getLesson'
 import { getStaticCourseParams, getStaticLessonParams } from '@/utilities/getStaticParams'
-import { LessonMetadata } from '@/utilities/types'
+import { ExtendedLessonMetadata } from '@/utilities/types'
 
 import classes from '@/common.module.css'
 
@@ -35,19 +35,19 @@ export default async function Page({ params }: { params: Promise<CourseParams> }
   const { title, description, lastUpdated } = metadata
   
   const lessonParams = await getStaticLessonParams(courseID)
-  const lessons: (LessonMetadata & { url: string })[] = []
+  const lessons: ExtendedLessonMetadata[] = []
   
   for (const lesson of lessonParams) {
     const { lessonID } = lesson
     const lessonData = await getLesson(courseID, lesson.lessonID)
-    if (lessonData) lessons.push({ url: `/${courseID}/${lessonID}`, ...lessonData.metadata })
+    if (lessonData) lessons.push({ courseID, lessonID, url: `/${courseID}/${lessonID}`, ...lessonData.metadata })
   }
   
   return <Container>
-    <Title order={1}>{title}</Title>
+    <Title order={1} className={classes['text-wrap-pretty']}>{title}</Title>
     <Text mb="md">Last updated on {lastUpdated}</Text>
     <Text mb="md" className={classes['text-wrap-pretty']}>{description}</Text>
-    <Title order={2} mb="md">Lessons In This Course</Title>
+    <Title order={2} mb="md" className={classes['text-wrap-pretty']}>Lessons In This Course</Title>
     
     <Stack>
       {lessons.map((lesson) => <LessonCard key={lesson.url} lesson={lesson} />)}

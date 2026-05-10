@@ -1,6 +1,6 @@
 'use client'
 
-import { Container, createTheme, Divider, Input, NavLink, NumberInput, Radio } from '@mantine/core'
+import { Anchor, Container, createTheme, Divider, Input, NavLink, NumberInput, Radio } from '@mantine/core'
 import { CodeHighlight, CodeHighlightAdapter, stripShikiCodeBlocks } from '@mantine/code-highlight'
 import { BundledLanguage, BundledTheme, CodeToHastOptions } from 'shiki'
 
@@ -11,7 +11,7 @@ import classes from '@/common.module.css'
 export const theme = createTheme({
   respectReducedMotion: true,
   fontFamilyMonospace: atkinsonMono.style.fontFamily,
-  defaultRadius: 'lg',
+  defaultRadius: 'md',
   autoContrast: true,
   primaryColor: 'green',
   primaryShade: { dark: 4, light: 5 },
@@ -56,11 +56,12 @@ export const theme = createTheme({
   },
   
   components: {
+    Anchor: Anchor.extend({ defaultProps: { td: 'underline' } }),
     CodeHighlight: CodeHighlight.extend({ defaultProps: { className: classes.code } }),
     Container: Container.extend({ defaultProps: { px: 0 } }),
     Divider: Divider.extend({ defaultProps: { size: 'sm' } }),
     Input: Input.extend({ classNames: { input: classes.input } }),
-    NavLink: NavLink.extend({ classNames: { label: classes['input-label'] } }),
+    NavLink: NavLink.extend({ classNames: { label: classes['input-label'] }, defaultProps: { variant: 'subtle' } }),
     NumberInput: NumberInput.extend({ classNames: { input: classes.input, control: classes['number-control'], label: classes['input-label'] } }),
     Radio: Radio.extend({ classNames: { inner: classes.radio, label: classes['input-label'] } })
   },

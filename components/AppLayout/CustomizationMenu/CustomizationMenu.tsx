@@ -162,7 +162,7 @@ export default function CustomizationMenu() {
         }}
         mb={`${previewParagraphSpacing}em`}
       >
-        You may have heard about magical wizards that sit behind computer screens all day and make computers do whatever they want. Some create elaborate video games, others complicated websites, and still others that make robots move, speak, and beat people at chess. But what is programming really? At a very basic level, it's just giving a computer a list of instructions to follow one by one. Imagine it somewhat like baking cookies:
+        You may have heard about magical wizards that sit behind computer screens all day and make computers do whatever they want. Some create elaborate video games, others complicated websites, and still others that make robots move, speak, and beat people at chess. But what is programming really? At a very basic level, it's just giving a computer a list of instructions to follow one by one.
       </Text>
       <Text
         style={{
@@ -172,11 +172,11 @@ export default function CustomizationMenu() {
           wordSpacing: `${previewWordSpacing}em`,
         }}
       >
-        First, you need to know what ingredients the cookie recipe asks for. In other words, what do you want this computer program to be able to do? Chocolate chip cookies and peanut butter cookies are both cookies, but they can taste very different. Same with computer programs. One may be your favorite game this year, and another may be the app you use to remind yourself to take out the trash. These programs will have different parts to them, like 3D models for characters, or a database to store a list of reminders.
+        Imagine it somewhat like baking cookies: First, you need to know what ingredients the cookie recipe asks for. In other words, what do you want this computer program to be able to do? Chocolate chip cookies and peanut butter cookies are both cookies, but they can taste very different. Same with computer programs. One may be your favorite game this year, and another may be the app you use to remind yourself to take out the trash. These programs will have different parts to them, like 3D models for characters, or a database to store a list of reminders.
       </Text>
       
       <Group justify="space-between" mt="md">
-        <Button variant="outline" color="gray" onClick={close}>
+        <Button variant="outline" color="dark" onClick={close}>
           Cancel
         </Button>
         <Button onClick={saveSettings}>

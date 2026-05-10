@@ -1,14 +1,16 @@
 'use client'
 
-import { Anchor, AspectRatio, Divider, Text, Title } from '@mantine/core'
+import { Anchor, AspectRatio, Checkbox, Divider, Text, Title } from '@mantine/core'
 import Link from 'next/link'
 
-import { CourseMetadata, LessonMetadata } from '@/utilities/types'
+import { CourseMetadata, ExtendedLessonMetadata } from '@/utilities/types'
+import useLessonCompleted from '@/utilities/useLessonCompleted'
 
 import classes from '@/common.module.css'
 
-export default function LessonHeader({ course, lesson }: { course: CourseMetadata, lesson: LessonMetadata }) {
-  const { title, description, lastUpdated, orderInCourse, videoURL } = lesson
+export default function LessonHeader({ course, lesson }: { course: CourseMetadata, lesson: ExtendedLessonMetadata }) {
+  const { courseID, lessonID, title, description, lastUpdated, orderInCourse, videoURL } = lesson
+  const { wasCompleted, toggleWasCompleted } = useLessonCompleted(courseID, lessonID)
   
   return <>
     <Title order={1}>{title}</Title>
@@ -17,6 +19,13 @@ export default function LessonHeader({ course, lesson }: { course: CourseMetadat
     </Text>
     <Text mb="md">Last updated on {lastUpdated}</Text>
     <Text className={classes['text-wrap-pretty']} mb="md">{description}</Text>
+    <Checkbox
+      label="Have you done this lesson?"
+      color="blue"
+      mb="md"
+      checked={wasCompleted}
+      onChange={toggleWasCompleted}
+    />
     <Divider mb="md" />
     
     {videoURL && <AspectRatio ratio={1920 / 1080} mx="auto" mb="md">

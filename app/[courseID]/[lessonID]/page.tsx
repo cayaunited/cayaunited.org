@@ -49,15 +49,17 @@ export default async function Page({ params }: { params: Promise<LessonParams> }
   if (!lesson) notFound()
   const { LessonContent, metadata } = lesson
   const { nextURL, previousURL } = metadata
+  
   const previousLesson = previousURL ? await getLesson(courseID, previousURL) : null
   const nextLesson = nextURL ? await getLesson(courseID, nextURL) : null
+  const extendedLessonData = { courseID, lessonID, url: '', ...lesson.metadata }
   
   return <Container>
-    <LessonHeader course={course.metadata} lesson={lesson.metadata} />
+    <LessonHeader course={course.metadata} lesson={extendedLessonData} />
     <LessonContent />
     <LessonFooter
       course={course.metadata}
-      lesson={lesson.metadata}
+      lesson={extendedLessonData}
       previousLesson={previousLesson?.metadata.title}
       nextLesson={nextLesson?.metadata.title}
     />

@@ -15,7 +15,7 @@ import CustomizationMenu from './CustomizationMenu/CustomizationMenu'
 import classes from './AppLayout.module.css'
 
 export default function AppLayout({ children, courseLinks }: { children: ReactNode, courseLinks: CourseLinkMetadata[] }) {
-  const { pinned: isHeaderVisible } = useHeadroom()
+  const { pinned: isHeaderVisible } = useHeadroom({ scrollDistance: 50 })
   const shouldPinHeader = useMatches({ base: true, sm: false })
   const [isNavigationOpened, { toggle: toggleNavigation, close: closeNavigation }] = useDisclosure()
   const pathname = usePathname()
