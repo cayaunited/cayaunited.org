@@ -21,5 +21,6 @@ export default withMDX(withBundleAnalyzer({
       '@hugeicons/core-free-icons',
       '@hugeicons/react',
     ],
+    sri: { algorithm: 'sha256' },
   },
 }))
