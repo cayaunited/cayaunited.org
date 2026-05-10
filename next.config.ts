@@ -12,7 +12,6 @@ export default withMDX(withBundleAnalyzer({
   reactCompiler: true,
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
   output: 'export',
-  distDir: 'docs',
   experimental: {
     optimizePackageImports: [
       '@mantine/core',
