@@ -24,6 +24,7 @@ export async function generateMetadata({ params }:
   return {
     title,
     description,
+    keywords: lesson.metadata.keywords,
     openGraph: {
       title,
       description,

@@ -19,7 +19,8 @@ export async function generateMetadata({ params }: { params: Promise<CourseParam
   
   return {
     title: `${course.metadata.title} | CAYA United`,
-    description: course.metadata.description
+    description: course.metadata.description,
+    keywords: course.metadata.keywords,
   }
 }
 

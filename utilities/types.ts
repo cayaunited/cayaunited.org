@@ -4,6 +4,7 @@ export interface CourseMetadata {
   link: string
   description: string
   lastUpdated: string
+  keywords?: string
 }
 
 export interface LessonMetadata {
@@ -11,6 +12,7 @@ export interface LessonMetadata {
   description: string
   lastUpdated: string
   orderInCourse: number
+  keywords?: string
   videoURL?: string
   thumbnailURL?: string
   thumbnailAltText?: string
