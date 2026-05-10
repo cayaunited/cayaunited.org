@@ -15,6 +15,7 @@ import '@mantine/code-highlight/styles.css'
 export const metadata: Metadata = {
   title: 'CAYA United',
   description: 'Come as you are, develop better, game better, and become better, united as one.',
+  metadataBase: new URL('https://cayaunited.org'),
 }
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
@@ -40,7 +41,6 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   return <html lang="en" {...mantineHtmlProps}>
     <head>
       <ColorSchemeScript />
-      <link rel="shortcut icon" href="/favicon.svg" />
       <meta
         name="viewport"
         content="minimum-scale=1, initial-scale=1, width=device-width"

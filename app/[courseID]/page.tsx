@@ -32,7 +32,7 @@ export default async function Page({ params }: { params: Promise<CourseParams> }
   const course = await getCourse(courseID)
   if (!course) notFound()
   const { CourseContent, metadata } = course
-  const { title, description, lastUpdated } = metadata
+  const { fullTitle, description, lastUpdated } = metadata
   
   const lessonParams = await getStaticLessonParams(courseID)
   const lessons: ExtendedLessonMetadata[] = []
@@ -44,7 +44,7 @@ export default async function Page({ params }: { params: Promise<CourseParams> }
   }
   
   return <Container>
-    <Title order={1} className={classes['text-wrap-pretty']}>{title}</Title>
+    <Title order={1} className={classes['text-wrap-pretty']}>{fullTitle}</Title>
     <Text mb="md">Last updated on {lastUpdated}</Text>
     <Text mb="md" className={classes['text-wrap-pretty']}>{description}</Text>
     <Title order={2} mb="md" className={classes['text-wrap-pretty']}>Lessons In This Course</Title>

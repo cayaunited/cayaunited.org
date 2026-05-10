@@ -18,10 +18,37 @@ export async function generateMetadata({ params }:
   if (!course) return { title: 'Page Not Found | CAYA United' }
   const lesson = await getLesson(courseID, lessonID)
   if (!lesson) return { title: 'Page Not Found | CAYA United' }
+  const title = `${lesson.metadata.title} | ${course.metadata.title} | CAYA United`
+  const description = lesson.metadata.description
   
   return {
-    title: `${lesson.metadata.title} | ${course.metadata.title} | CAYA United`,
-    description: lesson.metadata.description
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: [
+        {
+          url: `https://cayaunited.org${lesson.metadata.thumbnailURL}`,
+          alt: lesson.metadata.thumbnailAltText,
+          width: 1200,
+          height: 675,
+        },
+      ],
+    },
+    twitter: {
+      title,
+      description,
+      card: 'summary_large_image',
+      images: [
+        {
+          url: `https://cayaunited.org${lesson.metadata.thumbnailURL}`,
+          alt: lesson.metadata.thumbnailAltText,
+          width: 1200,
+          height: 675,
+        },
+      ],
+    },
   }
 }
 
