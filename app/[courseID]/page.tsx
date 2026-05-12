@@ -2,6 +2,7 @@ import { Container, Stack, Text, Title } from '@mantine/core'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
+import ClientLink from '@/components/ClientLink/ClientLink'
 import LessonCard from '@/components/LessonCard/LessonCard'
 import getCourse from '@/utilities/getCourse'
 import getLesson from '@/utilities/getLesson'
@@ -32,8 +33,8 @@ export default async function Page({ params }: { params: Promise<CourseParams> }
   const { courseID } = await params
   const course = await getCourse(courseID)
   if (!course) notFound()
-  const { CourseContent, metadata } = course
-  const { fullTitle, description, lastUpdated } = metadata
+  const { metadata } = course
+  const { fullTitle, description, lastUpdated, link } = metadata
   
   const lessonParams = await getStaticLessonParams(courseID)
   const lessons: ExtendedLessonMetadata[] = []
@@ -48,12 +49,12 @@ export default async function Page({ params }: { params: Promise<CourseParams> }
     <Title order={1} className={classes['text-wrap-pretty']}>{fullTitle}</Title>
     <Text mb="md">Last updated on {lastUpdated}</Text>
     <Text mb="md" className={classes['text-wrap-pretty']}>{description}</Text>
+    <Text mb="md">Read the code on <ClientLink link={`https://github.com/cayaunited${link}`} label="GitHub" />.</Text>
+    
     <Title order={2} mb="md" className={classes['text-wrap-pretty']}>Lessons In This Course</Title>
     
     <Stack>
       {lessons.map((lesson) => <LessonCard key={lesson.url} lesson={lesson} />)}
     </Stack>
-    
-    <CourseContent />
   </Container>
 }
