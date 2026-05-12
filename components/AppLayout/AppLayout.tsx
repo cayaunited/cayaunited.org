@@ -1,6 +1,6 @@
 'use client'
 
-import { AppShell, Burger, Button, Group, Image, NavLink, rem, Text, useMatches } from '@mantine/core'
+import { Anchor, AppShell, Box, Burger, Button, Group, Image, NavLink, rem, Text, useMatches } from '@mantine/core'
 import { CodeHighlightAdapterProvider } from '@mantine/code-highlight'
 import { useDisclosure, useHeadroom } from '@mantine/hooks'
 import Link from 'next/link'
@@ -18,6 +18,7 @@ export default function AppLayout({ children, courseLinks }: { children: ReactNo
   const { pinned: isHeaderVisible } = useHeadroom({ scrollDistance: 50 })
   const shouldPinHeader = useMatches({ base: true, sm: false })
   const [isNavigationOpened, { toggle: toggleNavigation, close: closeNavigation }] = useDisclosure()
+  const footerHeight = useMatches({ base: 'calc(120px - 0.125rem)', sm: 'calc(60px - 0.125rem)' })
   const pathname = usePathname()
   const [previousPathname, setPreviousPathname] = useState(pathname)
   
@@ -99,7 +100,17 @@ export default function AppLayout({ children, courseLinks }: { children: ReactNo
         }
       </AppShell.Navbar>
       
-      <AppShell.Main>{children}</AppShell.Main>
+      <AppShell.Main>
+        <Box mih={`calc(100vh - 60px - ${footerHeight} - 1rem)`} pb="md">
+          {children}
+        </Box>
+        
+        <Box component="footer" className={classes.footer} h={footerHeight}>
+          <Text>
+            Drawings by{' '}<Anchor component={Link} href="https://roguerobin.com/" target="_blank">Rogue Robin Studios</Anchor>, game audio by{' '}<Anchor component={Link} href="https://x.com/felxlamp" target="_blank">Felx Lamp</Anchor>, and chalkboard texture by{' '}<Anchor component={Link} href="https://www.publicdomainpictures.net/en/view-image.php?image=100777" target="_blank">Karen Arnold</Anchor>
+          </Text>
+        </Box>
+      </AppShell.Main>
     </AppShell>
   </CodeHighlightAdapterProvider>
 }

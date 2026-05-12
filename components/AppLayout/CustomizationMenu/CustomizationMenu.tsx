@@ -2,7 +2,7 @@
 
 import { ComputerSettingsIcon, Moon02Icon, Settings01Icon, Sun03Icon } from '@hugeicons/core-free-icons'
 import { HugeiconsIcon } from '@hugeicons/react'
-import { ActionIcon, Button, Center, Group, Modal, NumberInput, Radio, SegmentedControl, Stack, Text, Title, useMantineColorScheme } from '@mantine/core'
+import { ActionIcon, Button, Center, Divider, Group, Modal, NumberInput, Radio, SegmentedControl, Stack, Text, Title, useMantineColorScheme } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { useState } from 'react'
 
@@ -90,6 +90,8 @@ export default function CustomizationMenu() {
           },
         ]}
       />
+      
+      <Divider mb="md" />
       
       <Radio.Group
         label={<Text fw="bold">Font Family</Text>}

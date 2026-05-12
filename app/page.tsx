@@ -1,8 +1,8 @@
 'use client'
 
-import { Rocket01Icon } from '@hugeicons/core-free-icons'
+import { GameController03Icon, PlayListIcon, Rocket01Icon } from '@hugeicons/core-free-icons'
 import { HugeiconsIcon } from '@hugeicons/react'
-import { Box, Button, Container, Grid, GridCol, Group, Image, rem, Space, Text, Title } from '@mantine/core'
+import { Box, Button, Container, Grid, GridCol, Image, rem, Space, Stack, Text, Title } from '@mantine/core'
 import Link from 'next/link'
 
 import MissionVisionSection from '@/components/MissionVisionSection/MissionVisionSection'
@@ -121,7 +121,7 @@ export default function Page() {
             </Text>
             .
           </Title>
-          <Group>
+          <Stack align="start">
             <Button
               component={Link}
               href="/ground-zero"
@@ -134,12 +134,36 @@ export default function Page() {
             >
               Start Your Journey
             </Button>
-          </Group>
+            <Button
+              component={Link}
+              href="https://www.youtube.com/@CAYA_United"
+              role="link"
+              target="_blank"
+              color="blue"
+              variant="outline"
+              size="md"
+              rightSection={<HugeiconsIcon icon={PlayListIcon} aria-hidden />}
+            >
+              Watch on YouTube
+            </Button>
+            <Button
+              component={Link}
+              href="https://cayaunited.itch.io/"
+              role="link"
+              target="_blank"
+              color="blue"
+              variant="outline"
+              size="md"
+              rightSection={<HugeiconsIcon icon={GameController03Icon} aria-hidden />}
+            >
+              Play on itch.io
+            </Button>
+          </Stack>
         </GridCol>
       </Grid>
     </Box>
     
-    <Box className={classes.hero} mb="-1rem" py={{ base: 'md', sm: 'xl' }}>
+    <Box className={classes.hero} mb="-1rem" py="md">
       <MissionVisionSection
         title="Mission"
         description="Welcome people in as they are, cross dividing barriers, and walk with them on their transformative journey to become the beautiful masterpieces they were made to be."

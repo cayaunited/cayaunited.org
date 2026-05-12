@@ -25,3 +25,12 @@
   }
 }
 
+.footer {
+  border-top: 0.125rem solid var(--app-shell-border-color);
+  padding: 0 1rem;
+  margin: 0 -1rem -1rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
