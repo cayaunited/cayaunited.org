@@ -2,7 +2,7 @@
 
 import { Anchor, AppShell, Box, Burger, Button, Group, Image, NavLink, rem, Text, useMatches } from '@mantine/core'
 import { CodeHighlightAdapterProvider } from '@mantine/code-highlight'
-import { useDisclosure, useHeadroom } from '@mantine/hooks'
+import { useDisclosure, useHeadroom, useReducedMotion } from '@mantine/hooks'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ReactNode, useState } from 'react'
@@ -19,6 +19,7 @@ export default function AppLayout({ children, courseLinks }: { children: ReactNo
   const shouldPinHeader = useMatches({ base: true, sm: false })
   const [isNavigationOpened, { toggle: toggleNavigation, close: closeNavigation }] = useDisclosure()
   const footerHeight = useMatches({ base: 'calc(120px - 0.125rem)', sm: 'calc(60px - 0.125rem)' })
+  const reduceMotion = useReducedMotion()
   const pathname = usePathname()
   const [previousPathname, setPreviousPathname] = useState(pathname)
   
@@ -31,12 +32,15 @@ export default function AppLayout({ children, courseLinks }: { children: ReactNo
     <AppShell
       header={{ height: 60, collapsed: shouldPinHeader && !isHeaderVisible }}
       navbar={{ width: 300, breakpoint: 'sm', collapsed: { desktop: true, mobile: !isNavigationOpened } }}
+      transitionDuration={reduceMotion ? 0 : 200}
       padding="md"
     >
+      <Anchor href="#main" className={classes['skip-link']}>Skip to main content</Anchor>
+      
       <AppShell.Header style={{ borderBottomWidth: '0.125rem' }}>
         <Group className={classes.header} justify="space-between">
           <Group>
-            <Link href="/">
+            <Link href="/" role="link" aria-label="Home page" className={classes.logo}>
               <Image
                 src="/logo.svg"
                 alt="CAYA United's logo: A simple butterfly with a gradient going from blue in the bottom left to green in the top right"
@@ -68,7 +72,15 @@ export default function AppLayout({ children, courseLinks }: { children: ReactNo
               ))
             }
             <CustomizationMenu />
-            <Burger opened={isNavigationOpened} onClick={toggleNavigation} hiddenFrom="sm" size="sm" mr="md" />
+            <Burger
+              opened={isNavigationOpened}
+              onClick={toggleNavigation}
+              aria-label="Toggle navigation"
+              hiddenFrom="sm"
+              size="sm"
+              mr="md"
+              transitionDuration={reduceMotion ? 0 : 300}
+            />
           </Group>
         </Group>
       </AppShell.Header>
@@ -83,6 +95,7 @@ export default function AppLayout({ children, courseLinks }: { children: ReactNo
               className={classes['navbar-link']}
               label={courseLink.label}
               active={pathname.startsWith(courseLink.url)}
+              tabIndex={isNavigationOpened ? 0 : -1}
             >
               {courseLink.lessonLinks.length > 0 && courseLink.lessonLinks.map((lessonLink) => (
                 <NavLink
@@ -93,6 +106,7 @@ export default function AppLayout({ children, courseLinks }: { children: ReactNo
                   label={lessonLink.label}
                   active={pathname === lessonLink.url}
                   color="blue"
+                  tabIndex={isNavigationOpened ? 0 : -1}
                 />
               ))}
             </NavLink>
@@ -100,12 +114,12 @@ export default function AppLayout({ children, courseLinks }: { children: ReactNo
         }
       </AppShell.Navbar>
       
-      <AppShell.Main>
+      <AppShell.Main id="main">
         <Box mih={`calc(100vh - 60px - ${footerHeight} - 1rem)`} pb="md">
           {children}
         </Box>
         
-        <Box component="footer" className={classes.footer} h={footerHeight}>
+        <Box className={classes.footer} h={footerHeight}>
           <Text>
             Drawings by{' '}<Anchor component={Link} href="https://roguerobin.com/" target="_blank">Rogue Robin Studios</Anchor>, game audio by{' '}<Anchor component={Link} href="https://x.com/felxlamp" target="_blank">Felx Lamp</Anchor>, and chalkboard texture by{' '}<Anchor component={Link} href="https://www.publicdomainpictures.net/en/view-image.php?image=100777" target="_blank">Karen Arnold</Anchor>
           </Text>

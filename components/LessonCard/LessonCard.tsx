@@ -14,12 +14,12 @@ export default function LessonCard({ lesson }: { lesson: ExtendedLessonMetadata 
   const { wasCompleted, toggleWasCompleted } = useLessonCompleted(lesson.courseID, lesson.lessonID)
   
   return <Card p={0}>
-    <Grid gap={0}>
+    <Grid gap={0} align="stretch">
       <Grid.Col span={{ base: 12, md: 6 }}>
-        <Image src={lesson.thumbnailURL} alt={lesson.thumbnailAltText} />
+        <Image src={lesson.thumbnailURL} alt={lesson.thumbnailAltText} h="100%" />
       </Grid.Col>
       <Grid.Col span={{ base: 12, md: 6 }} p="md">
-        <Title order={4} mb="md" className={classes['text-wrap-pretty']}>{lesson.title}</Title>
+        <Title order={3} mb="md" className={classes['text-wrap-pretty']}>{lesson.title}</Title>
         <Text mb="md" className={classes['text-wrap-pretty']}>{lesson.description}</Text>
         <Group mb="md">
           <Button

@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://cayaunited.org /sitemap.xml

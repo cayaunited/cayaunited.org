@@ -39,7 +39,7 @@ export const theme = createTheme({
       '#00DB80',
       '#00C875',
       '#00B66A',
-      '#00A460',
+      '#007041',
     ],
     blue: [
       '#DBF3FF',
@@ -56,7 +56,8 @@ export const theme = createTheme({
   },
   
   components: {
-    Anchor: Anchor.extend({ defaultProps: { td: 'underline' } }),
+    // @ts-expect-error role is not defined in the props list for some reason here
+    Anchor: Anchor.extend({ defaultProps: { td: 'underline', role: 'link' } }),
     CodeHighlight: CodeHighlight.extend({ defaultProps: { className: classes.code } }),
     Container: Container.extend({ defaultProps: { px: 0 } }),
     Divider: Divider.extend({ defaultProps: { size: 'sm' } }),
@@ -90,6 +91,18 @@ export const shikiAdapter: CodeHighlightAdapter = {
           lang: language,
           theme: colorScheme === 'light' ? 'light-plus' : 'dark-plus',
           colorReplacements: {
+            'light-plus': {
+              '#af00db': '#7a00d1',
+              '#267f99': '#006139',
+              '#0000ff': '#00527A',
+              '#001080': '#000000',
+              '#795e26': '#575700',
+              '#b5cea8': '#ffbf80',
+              '#800000': '#3c4045',
+              '#008000': '#3c4045',
+              '#098658': '#694c24',
+              '#e50000': '#000000',
+            },
             'dark-plus': {
               '#c586c0': '#e3bdff',
               '#4ec9b0': '#80ffca',

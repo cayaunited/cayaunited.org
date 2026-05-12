@@ -10,6 +10,7 @@ import { fontMapping } from '@/fonts'
 import useDynamicTheme from '@/utilities/useDynamicTheme'
 
 import classes from '@/common.module.css'
+import { IconX } from '@tabler/icons-react'
 
 export default function CustomizationMenu() {
   const [opened, { open, close }] = useDisclosure(false)
@@ -50,7 +51,7 @@ export default function CustomizationMenu() {
       opened={opened}
       onClose={close}
       title={<strong>Website Settings</strong>}
-      closeButtonProps={{ autoFocus: true }}
+      closeButtonProps={{ autoFocus: true, 'aria-label': 'Close settings', icon: <IconX aria-hidden /> }}
       size="lg"
     >
       <Text id="color-theme-label" fw="bold" mb="xs" className={classes['segmented-control-label']}>Color Theme</Text>
