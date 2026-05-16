@@ -16,7 +16,7 @@ import classes from './AppLayout.module.css'
 
 export default function AppLayout({ children, courseLinks }: { children: ReactNode, courseLinks: CourseLinkMetadata[] }) {
   const { pinned: isHeaderVisible } = useHeadroom({ scrollDistance: 50 })
-  const shouldPinHeader = useMatches({ base: true, sm: false })
+  const isMobile = useMatches({ base: true, sm: false })
   const [isNavigationOpened, { toggle: toggleNavigation, close: closeNavigation }] = useDisclosure()
   const footerHeight = useMatches({ base: 'calc(120px - 0.125rem)', sm: 'calc(60px - 0.125rem)' })
   const reduceMotion = useReducedMotion()
@@ -30,7 +30,7 @@ export default function AppLayout({ children, courseLinks }: { children: ReactNo
   
   return <CodeHighlightAdapterProvider adapter={shikiAdapter}>
     <AppShell
-      header={{ height: 60, collapsed: shouldPinHeader && !isHeaderVisible }}
+      header={{ height: 60, collapsed: isMobile && !isHeaderVisible }}
       navbar={{ width: 300, breakpoint: 'sm', collapsed: { desktop: true, mobile: !isNavigationOpened } }}
       transitionDuration={reduceMotion ? 0 : 200}
       padding="md"
@@ -40,14 +40,14 @@ export default function AppLayout({ children, courseLinks }: { children: ReactNo
       <AppShell.Header style={{ borderBottomWidth: '0.125rem' }}>
         <Group className={classes.header} justify="space-between">
           <Group>
-            <Link href="/" role="link" aria-label="Home page" className={classes.logo}>
+            <Link href="/" role="link" aria-hidden tabIndex={-1} className={classes.logo}>
               <Image
                 src="/logo.svg"
                 alt="CAYA United's logo: A simple butterfly with a gradient going from blue in the bottom left to green in the top right"
                 h={rem(24)}
               />
             </Link>
-            <Text component={Link} href="/" span className={`${classes['header-name']} ${righteous.className}`}>
+            <Text component={Link} href="/" span className={`${classes['header-name']} ${righteous.className}`} aria-label="Link to home page">
               CAYA United
             </Text>
           </Group>
@@ -59,9 +59,11 @@ export default function AppLayout({ children, courseLinks }: { children: ReactNo
                   component={Link}
                   href={link.url}
                   role="link"
+                  aria-hidden={isMobile}
                   visibleFrom="sm"
                   variant="subtle"
                   className={classes['header-link']}
+                  aria-label={`Course ${link.label}`}
                   color="gray"
                   c={pathname.startsWith(link.url) ? 'green' : undefined}
                   h="100%"
@@ -73,6 +75,7 @@ export default function AppLayout({ children, courseLinks }: { children: ReactNo
             }
             <CustomizationMenu />
             <Burger
+              aria-hidden={!isMobile}
               opened={isNavigationOpened}
               onClick={toggleNavigation}
               aria-label="Toggle navigation"
@@ -85,7 +88,7 @@ export default function AppLayout({ children, courseLinks }: { children: ReactNo
         </Group>
       </AppShell.Header>
       
-      <AppShell.Navbar bd="none">
+      <AppShell.Navbar aria-hidden={!isNavigationOpened} bd="none">
         {
           courseLinks.map((courseLink) => (
             <NavLink
@@ -93,6 +96,7 @@ export default function AppLayout({ children, courseLinks }: { children: ReactNo
               component={Link}
               href={courseLink.url}
               className={classes['navbar-link']}
+              aria-label={`Course ${courseLink.label}`}
               label={courseLink.label}
               active={pathname.startsWith(courseLink.url)}
               tabIndex={isNavigationOpened ? 0 : -1}
@@ -103,6 +107,7 @@ export default function AppLayout({ children, courseLinks }: { children: ReactNo
                   component={Link}
                   href={lessonLink.url}
                   className={classes['navbar-link']}
+                  aria-label={`Lesson ${lessonLink.label}`}
                   label={lessonLink.label}
                   active={pathname === lessonLink.url}
                   color="blue"

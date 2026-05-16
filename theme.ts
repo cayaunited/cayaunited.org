@@ -60,7 +60,7 @@ export const theme = createTheme({
     Anchor: Anchor.extend({ defaultProps: { td: 'underline', role: 'link' } }),
     CodeHighlight: CodeHighlight.extend({ defaultProps: { className: classes.code } }),
     Container: Container.extend({ defaultProps: { px: 0 } }),
-    Divider: Divider.extend({ defaultProps: { size: 'sm' } }),
+    Divider: Divider.extend({ defaultProps: { size: 'sm', 'aria-hidden': true } }),
     Input: Input.extend({ classNames: { input: classes.input } }),
     NavLink: NavLink.extend({ classNames: { label: classes['input-label'] }, defaultProps: { variant: 'subtle' } }),
     NumberInput: NumberInput.extend({ classNames: { input: classes.input, control: classes['number-control'], label: classes['input-label'] } }),

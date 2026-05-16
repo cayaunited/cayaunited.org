@@ -51,7 +51,7 @@ export default function CustomizationMenu() {
       opened={opened}
       onClose={close}
       title={<strong>Website Settings</strong>}
-      closeButtonProps={{ autoFocus: true, 'aria-label': 'Close settings', icon: <IconX aria-hidden /> }}
+      closeButtonProps={{ autoFocus: true, 'aria-label': 'Close settings without saving', icon: <IconX aria-hidden /> }}
       size="lg"
     >
       <Text id="color-theme-label" fw="bold" mb="xs" className={classes['segmented-control-label']}>Color Theme</Text>
@@ -179,10 +179,10 @@ export default function CustomizationMenu() {
       </Text>
       
       <Group justify="space-between" mt="md">
-        <Button variant="outline" color="dark" onClick={close}>
+        <Button aria-label="Close settings without saving" variant="outline" color="dark" onClick={close}>
           Cancel
         </Button>
-        <Button onClick={saveSettings}>
+        <Button aria-label="Save and close settings" onClick={saveSettings}>
           Save
         </Button>
       </Group>

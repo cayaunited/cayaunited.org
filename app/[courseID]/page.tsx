@@ -49,7 +49,7 @@ export default async function Page({ params }: { params: Promise<CourseParams> }
     <Title order={1} className={classes['text-wrap-pretty']}>{fullTitle}</Title>
     <Text mb="md">Last updated on {lastUpdated}</Text>
     <Text mb="md" className={classes['text-wrap-pretty']}>{description}</Text>
-    <Text mb="md">Read the code on <ClientLink link={`https://github.com/cayaunited${link}`} label="GitHub" />.</Text>
+    <Text mb="md">Read the code on <ClientLink link={`https://github.com/cayaunited${link}`} label="GitHub" /></Text>
     
     <Title order={2} mb="md" className={classes['text-wrap-pretty']}>Lessons In This Course</Title>
     
