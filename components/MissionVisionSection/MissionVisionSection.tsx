@@ -19,9 +19,9 @@ export default function MissionVisionSection({ title, description, color, cards 
             p={0}
             className={classes['text-wrap-pretty']}
           >
-            <Grid gap={0} align="center">
+            <Grid align="stretch" gap={0}>
               <Grid.Col span={{ base: 12, md: 6 }}>
-                <Image src={card.imageURL} alt={card.imageAltText} />
+                <Image src={card.imageURL} alt={card.imageAltText} h="100%" />
               </Grid.Col>
               <Grid.Col span={{ base: 12, md: 6 }} p="md">
                 <Group justify="space-between" align="center" mb="md">

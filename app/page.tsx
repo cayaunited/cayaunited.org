@@ -18,8 +18,8 @@ const gradientProps = {
 const missionCards = [
   {
     title: 'Welcome People',
-    imageURL: 'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-1.png',
-    imageAltText: '',
+    imageURL: '/images/mission-and-vision/welcome-people.png',
+    imageAltText: 'A man, a young girl with glasses, and a woman meeting in the forest at the base of a mountain getting ready to hike it together. They are greeting each other. One of them looks nervous but the others seem excited',
     description: <>
       <Text mb="md">Everyone is uniquely gifted with different personalities, backgrounds, experience levels, interests, skills, and more.</Text>
       <Text mb="md">We seek to create a learning community that recognizes the differences people have, and welcome them in as they are.</Text>
@@ -28,8 +28,8 @@ const missionCards = [
   },
   {
     title: 'Cross Barriers',
-    imageURL: 'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-2.png',
-    imageAltText: '',
+    imageURL: '/images/mission-and-vision/cross-barriers.png',
+    imageAltText: 'A young woman helping an older man to climb up a rock by grabbing his hand and pulling him up',
     description: <>
       <Text mb="md">There are many barriers that divide people in education, including finances, prior knowledge, learning styles, and more.</Text>
       <Text mb="md">We seek to cross those barriers to bring people the help they need in education.</Text>
@@ -38,8 +38,8 @@ const missionCards = [
   },
   {
     title: 'Walk With',
-    imageURL: 'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-3.png',
-    imageAltText: '',
+    imageURL: '/images/mission-and-vision/walk-with.png',
+    imageAltText: 'A young man with a walking stick and the young girl are talking as they walk up a path on the mountain together',
     description: <>
       <Text mb="md">It can sometimes seem lonely on the learning journey in education. Sometimes it can feel like you are left behind or forgotten.</Text>
       <Text mb="md">We recognize that, and wish to help change that. We believe all should feel seen, heard, known, and loved.</Text>
@@ -51,8 +51,8 @@ const missionCards = [
 const visionCards = [
   {
     title: 'Help For Today',
-    imageURL: 'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-4.png',
-    imageAltText: '',
+    imageURL: '/images/mission-and-vision/help.png',
+    imageAltText: 'The woman and the old man are holding a map as if they are trying to figure out where to go and where they are. She is pointing at the map as if helping him',
     description: <>
       <Text mb="md">We're all in need of help some days. That looks different from person to person, but we can't do everything ourselves, and we can't do life alone.</Text>
       <Text mb="md">There is no one solution that works for everyone when it comes to the problems we face.</Text>
@@ -61,8 +61,8 @@ const visionCards = [
   },
   {
     title: 'Healing From Yesterday',
-    imageURL: 'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-5.png',
-    imageAltText: '',
+    imageURL: '/images/mission-and-vision/healing.png',
+    imageAltText: 'The man is helping the young woman get up after she likely tripped and fell. She now has a cloth tied around her knee, as if she was slightly injured',
     description: <>
       <Text mb="md">Everyone battles the past, and the past often has an impact on who we are today, whether for better or for worse.</Text>
       <Text mb="md">When it comes to education, that can often lead to increased anxiety, needing to unlearn bad things, and sometimes feeling stuck.</Text>
@@ -71,8 +71,8 @@ const visionCards = [
   },
   {
     title: 'Hope For Tomorrow',
-    imageURL: 'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-6.png',
-    imageAltText: '',
+    imageURL: '/images/mission-and-vision/hope.png',
+    imageAltText: 'The young man with a walking stick is standing at the top of the mountain staring off into the distance at other, taller mountains',
     description: <>
       <Text mb="md">There are days that we are just living in the moment, trying to make it to the next one. However, we weren't meant to always be in that state.</Text>
       <Text mb="md">The truth is, we can have joy today and hope for tomorrow. We can live moment to moment and thrive, instead of just surviving.</Text>
