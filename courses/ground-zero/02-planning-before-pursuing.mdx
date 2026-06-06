@@ -1,0 +1,90 @@
+export const metadata = {
+  title: 'Planning Projects Before Pursuing Them',
+  description: 'The importance of research and planning before starting a project, and how to plan a project.',
+  lastUpdated: 'June 3, 2026',
+  orderInCourse: 2,
+  thumbnailURL: '/images/ground-zero/02/thumbnail.png',
+  thumbnailAltText: 'Planning Projects Before Pursuing Them: The video\'s thumbnail, containing a lightbulb that represents coming up with ideas and a plan for a project',
+  keywords: 'caya united, come as you are, ground zero, introduction to programming, planning programming projects, game development, unity, c#, complete beginner',
+  videoURL: 'https://www.youtube.com/embed/YDkHkDI8_Tw',
+  previousURL: '01-what-why-how',
+}
+
+## Why should I plan and practice?
+“Let's jump straight into it!” and related phrases are common in our society today. They bring a sense of urgency, suggesting quick action without much thought. “Think fast!” is another example, which someone often shouts before throwing something at you, expecting you to react quickly and catch it. In some scenarios, we will have to act without much time to think. If a bear is chasing you, you don't have much longer than maybe a few seconds to react, and you definitely don't have the time to wonder if it just wants a hug.
+
+![A cartoon person being chased by a bear](/images/ground-zero/02/01-running-from-bear.png)
+
+Game development (and programming in general), however, provide plenty of time for thinking. It's usually not a life or death situation to immediately start making a game without prior planning or consideration. We are often tempted to just jump into something, but we have to set those instincts aside when it comes to programming. While there is nothing wrong with having fun playing around with game mechanics and programming them without a plan, you need to have a plan if you want to stay on track and finish a game.
+
+![A bear standing at a computer and planning to make a game](/images/ground-zero/02/02-bear-planning.png)
+
+On the other hand, it's easy to just sit around and come up with ideas and plans forever, stuck in an endless loop of thoughts. If those thoughts are never implemented, then they are just thoughts and nothing more, just like dreaming about changing the world doesn't make it a better place until you take action. That's where we need to find a balance. We should plan ahead, but without too much detail. Often we will come up with other ideas later, or discover that some of our initial ideas won't work (or at least not the way we originally planned).
+
+![Blocks of various sizes balanced on both sides of a seesaw. The left side is labeled "planning", and the right side is labeled "improvisation"](/images/ground-zero/02/03-balance.png)
+
+Another caution when starting game development or programming in general is trying to “learn all of a language” before actually using it. In the case of game development, you may try to learn “most” of C# before you jump into making games with it. The problem here is that you may be learning several things that you don't need, or at least not at the moment, leading to information overload. Most people (if not all), learn over time through practice, which is why homework exists. (I know, I'm telling you to do your homework).
+
+![A side profile of a person's head, full of graphics depicting different programming concepts. They are all crammed in there to represent information overload](/images/ground-zero/02/04-information-overload.png)
+
+The point is this: we can “just jump straight into” a game or a programming language, but we need a good motivation and a good way of using what we learn. That's where planning and practice come in. Having a basic outline of what you want in the game can keep you on track, give you something to look forward to, and make sure your game idea isn't too large.
+
+## How do I plan a game?
+So how do you plan a game, then? There is no “one” way to plan a game, but there can be a general framework for doing so. First, what kind of game are you wanting to make? This question is limited by the time you have to make it, the resources you have to make it with, and the people you have to help you. Are you wanting to make a role playing game with branching dialogue trees and a full skill system? You should probably only work on something like this if you have a lot of experience and a team of people.
+
+![A bear shrugging, an hourglass, a wrench, and a person](/images/ground-zero/02/05-bear-shrugging.png)
+
+For the sake of this tutorial series, let's pick something simple: a match-three game. It's a rather basic game where you swap some sort of item with another in a grid, trying to get three or more matching items in a row. Whenever you make a match, the matched items disappear and more fall to replace them. The goal is usually to score as many points as you can before there are no more possible matches, a timer runs out, or you run out of a given number of moves.
+
+![A grid of gems, with a vertical match of three gems](/images/ground-zero/02/06-grid-with-match.png)
+
+Once you have a genre or type of game picked, you probably want to do some research on it. Find similar games and see what they have to offer. What do they do well, and where could they do better? If you want to make a good game in a certain genre, you have to know the genre. Look up videos of people playing games in that genre, or play some yourself if you have (or can get access to) that style of game. Make note of things like, “What does the player do?” or “Why does the player do what they do?”. These are important questions to figure out main mechanics and motivations in the game. You should also note any challenges the player may face.
+
+In our example of a match-three game, the player swaps items to make matches and scores points by doing so. They want to get a high score, which is often made difficult by a limited number of possible moves or time. Some popular example games to study are Bejeweled, Candy Crush, and Farm Heroes Saga. These all share common mechanics but implement them in different and interesting ways.
+
+![Covert art for Bejeweled, Candy Crush, and Farm Heroes Saga](/images/ground-zero/02/07-example-games.png)
+
+After you've done some research, you can start planning out what you want for your game. Try to answer those same questions and then give specifics of what will happen in the game and what the player can do. You don't need super detailed specifics, and those details may change later anyways. The idea is to have a general plan of what to make, and if you have the experience, plan out what steps to take in making the game.
+
+Usually you want to start by making the most important mechanics, like a player character, and then move on to other aspects like level design, art, sound, etc. It's tempting to just start looking for or working on art, music, and sound effects, but those are usually later steps. Often starting with the core mechanics is good for making sure the game is fun. Having a basic prototype that tests the core gameplay is key. The “fun” stuff of art and sound comes later.
+
+![A simple roadmap with three steps and icons representing each step. Step 1 is research, showing a magnifying glass, lightbulb, and gear. Step 2 is prototyping the most important mechanics, showing different objects like a cube to represent basic mechanics. Between steps 2 and 3 is a bug, representing getting sidetracked from the roadmap by fixing bugs. Step 3 is adding art, music, and sound effects, showing a color palette and a music note](/images/ground-zero/02/08-roadmap.png)
+
+## Planning our match-three game
+Now that we've discussed why and how to plan, let's actually plan this match-three game out. I'm aiming for something simple that I can create a polished game out of and teach several concepts through. It doesn't need to be the next, biggest match-three game out there, but it should be a complete package, starting with a solid prototype. It doesn't need fancy features, nor all the features in a modern match-three game. Since we're just creating a simple game to start and learn with, it doesn't even need to have unique gameplay.
+
+Let's first think of the basics. We need the following features:
+
+- A grid of items (we'll go with gems)
+- Different kinds of gems (we'll use different colors and shapes)
+- The ability to swap gems that have different types, as long as it will result in a match
+- If there are 3 to 5 gems of the same type in a row or column, they are a match
+- After a swap, any matched gems disappear
+- Points are scored for each gem matched
+- Gems above the matched gems will fall down to replace them
+- Any now-empty spots at the top will be filled with new gems
+
+![A grid of gems after a match was made, showing a plus 10 icon in the three grid cells where the gems just were before matching](/images/ground-zero/02/09-grid-with-score.png)
+
+Those are the basic mechanics. We also need to consider some other mechanics, like how the game ends. There are a few different modes we can implement:
+
+- Endless - Any time there are no possible matches, regenerate the grid. The game ends when the player chooses to end it
+- Timed - Any time there are no possible matches, regenerate the grid. When the timer runs out, the game ends
+- Limited Moves - Any time there are no possible matches, the game ends
+
+A lot of match-three games have several other things, like pre-made levels, power-ups, special grid tiles, etc. Some of these can get complicated, and we don't need them for a starter game, but let's implement a few simple special features to make the game more fun and enjoyable:
+
+- Explosive gems that blow up nearby gems when swapped or destroyed. They are created by matching four gems together
+- Targeting gems that destroy all of one type of gem, depending on what type of gem the targeting gem is swapped with. They are created by matching five gems together
+- A score multiplier that increases for every match while gems are still falling or exploding, and resets afterward
+- If the grid regenerates, it spawns in the same number of special gems that existed before the grid regenerated
+
+![Four matching gems, a bomb created by them, a sniper crosshair representing a targeting gem, and a grid of gems with electricity coming from the crosshair and destroying all gems with a triangle shape](/images/ground-zero/02/10-special-gems.png)
+
+These mechanics do add some complexity to the game, but not too much complexity. At least some is needed to make sure the game is fun, not too repetitive, and can have some strategy (like saving up explosive gems for a long chain and extra points). These mechanics also improve the “game feel”, which is how the game feels to play. That's an important concept in game development in general. A game could have amazing artwork and sound, but if the game feels off, like unresponsive controls or confusing mechanics, then the game likely won't do well or be fun.
+
+At the same time, a game doesn't need to have a lot of content or mechanics to be enjoyable and memorable. Yes, the large-budget games can have lots of content or mechanics and be fun, but smaller games can also be good. One of the key parts to a game is solid core gameplay. In our case, does the core gameplay of swapping gems and breaking them feel good? Are the controls simple and responsive? Are there common, frustrating issues, or is the gameplay rather smooth? These are important questions to consider when making a prototype, which is the next step now that we've got a plan.
+
+![A person sitting in a chair and frustrated while playing a game on the TV](/images/ground-zero/02/11-person-gaming.png)
+
+Stay tuned to learn how to implement this prototype, step by step. We'll start with the very basics of the Unity game engine, which is the main tool we'll use to make this game. I'll explain different features as we need them, and I'll also teach different programming concepts as we use them. It can be tempting to try to learn everything needed before hand or at once, but the slower rate of learning information should help with better understanding game dev and programming. Make sure you follow along with the tutorials to practice and get familiar with the software needed. Until then, God bless, and keep learning.

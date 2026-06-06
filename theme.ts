@@ -1,6 +1,6 @@
 'use client'
 
-import { Anchor, Container, createTheme, Divider, Input, NavLink, NumberInput, Radio } from '@mantine/core'
+import { Anchor, Container, createTheme, Divider, Input, List, NavLink, NumberInput, Radio } from '@mantine/core'
 import { CodeHighlight, CodeHighlightAdapter, stripShikiCodeBlocks } from '@mantine/code-highlight'
 import { BundledLanguage, BundledTheme, CodeToHastOptions } from 'shiki'
 
@@ -64,7 +64,8 @@ export const theme = createTheme({
     Input: Input.extend({ classNames: { input: classes.input } }),
     NavLink: NavLink.extend({ classNames: { label: classes['input-label'] }, defaultProps: { variant: 'subtle' } }),
     NumberInput: NumberInput.extend({ classNames: { input: classes.input, control: classes['number-control'], label: classes['input-label'] } }),
-    Radio: Radio.extend({ classNames: { inner: classes.radio, label: classes['input-label'] } })
+    Radio: Radio.extend({ classNames: { inner: classes.radio, label: classes['input-label'] } }),
+    List: List.extend({ defaultProps: { spacing: 'calc(var(--paragraph-bottom-margin) / 4)' } }),
   },
 })
 

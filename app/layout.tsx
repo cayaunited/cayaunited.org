@@ -15,7 +15,7 @@ import '@mantine/code-highlight/styles.css'
 export const metadata: Metadata = {
   title: 'CAYA United',
   description: 'Come as you are, develop better, game better, and become better, united as one.',
-  keywords: 'caya united, come as you are, game development, programming, learn how to program, make video games, beginner, unity, c#, accessible, accessibility',
+  keywords: 'caya united, come as you are, game development, programming, learn how to program, make video games, beginner, unity, c#, accessible, accessibility, caia, kaia, kaya, untied',
   metadataBase: new URL('https://cayaunited.org'),
 }
 

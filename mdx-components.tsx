@@ -12,10 +12,10 @@ const components: MDXComponents = {
   p: ({ children }) => <Text mb="var(--paragraph-bottom-margin)">{children}</Text>,
   a: (props) => <Anchor href={props.href} target="_blank" {...(props as AnchorProps)} />,
   // eslint-disable-next-line jsx-a11y/alt-text
-  img: (props) => <Image mb="md" {...(props as ImageProps)} />,
+  img: (props) => <Image mb="var(--paragraph-bottom-margin)" {...(props as ImageProps)} />,
   hr: () => <Divider mb="md" />,
-  ul: ({ children }) => <List type="unordered" mb="md">{children}</List>,
-  ol: ({ children }) => <List type="ordered" mb="md">{children}</List>,
+  ul: ({ children }) => <List type="unordered" mb="var(--paragraph-bottom-margin)">{children}</List>,
+  ol: ({ children }) => <List type="ordered" mb="var(--paragraph-bottom-margin)">{children}</List>,
   li: ({ children }) => <ListItem>{children}</ListItem>,
   code: ({ children, className }) => <CodeHighlight
     code={children}

@@ -1,6 +1,6 @@
 'use client'
 
-import { ActionIcon, Button, Checkbox, createTheme, CSSVariablesResolver, InputLabel, ModalHeader, Text, Title } from '@mantine/core'
+import { ActionIcon, Button, Checkbox, createTheme, CSSVariablesResolver, InputLabel, ListItem, ModalHeader, Text, Title } from '@mantine/core'
 import { useLocalStorage } from '@mantine/hooks'
 
 import { fontMapping } from '@/fonts'
@@ -70,6 +70,7 @@ export default function useDynamicTheme() {
         ModalHeader: ModalHeader.extend({ defaultProps: { style: { ...textStyle, fontWeight: 'bold' } } }),
         Text: Text.extend({ defaultProps: { style: textStyle, fz: 'md' } }),
         Title: Title.extend({ defaultProps: { style: textStyle } }),
+        ListItem: ListItem.extend({ defaultProps: { style: textStyle, fz: 'md' } }),
       },
     }),
     
