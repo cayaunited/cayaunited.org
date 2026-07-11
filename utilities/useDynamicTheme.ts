@@ -1,6 +1,7 @@
 'use client'
 
 import { ActionIcon, Button, Checkbox, createTheme, CSSVariablesResolver, InputLabel, ListItem, ModalHeader, Text, Title } from '@mantine/core'
+import { CodeHighlight } from '@mantine/code-highlight'
 import { useLocalStorage } from '@mantine/hooks'
 
 import { fontMapping } from '@/fonts'
@@ -66,6 +67,7 @@ export default function useDynamicTheme() {
         ActionIcon: ActionIcon.extend({ defaultProps: { className: classes['action-icon'] } }),
         Button: Button.extend({ defaultProps: { className: classes.button, style: { ...textStyle, fontWeight: 400, fontSize: '1rem' } } }),
         Checkbox: Checkbox.extend({ classNames: { input: classes.input, label: classes['input-label']}, defaultProps: { style: textStyle } }),
+        CodeHighlight: CodeHighlight.extend({ defaultProps: { className: classes.code, ff: font.style.fontFamily }, classNames: { controls: classes['code-controls'] } }),
         InputLabel: InputLabel.extend({ defaultProps: { style: textStyle, mb: 'xs' } }),
         ModalHeader: ModalHeader.extend({ defaultProps: { style: { ...textStyle, fontWeight: 'bold' } } }),
         Text: Text.extend({ defaultProps: { style: textStyle, fz: 'md' } }),

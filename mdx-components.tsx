@@ -21,7 +21,8 @@ const components: MDXComponents = {
     code={children}
     language={className.slice(9)}
     radius="var(--mantine-radius-default)"
-    withExpandButton
+    // Only allow for collapsing if there are more than 10 lines
+    withExpandButton={`${children}`.split('\n').length > 10}
     defaultExpanded={true}
     mb="md"
   />,
