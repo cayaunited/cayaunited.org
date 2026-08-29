@@ -1,0 +1,127 @@
+export const metadata = {
+  title: 'Improving Generation and Storing Gems',
+  description: 'An introduction to for loops, lists, and VS Code suggestions.',
+  lastUpdated: 'August 28, 2026',
+  orderInCourse: 7,
+  thumbnailURL: '/images/ground-zero/07/thumbnail.png',
+  thumbnailAltText: 'Improving Generation and Storing Gems: The video\'s thumbnail, containing an open carboard box full of differently colored gems',
+  keywords: 'caya united, come as you are, ground zero, match-three game, introduction to programming, planning programming projects, game development, unity, c#, complete beginner',
+  videoURL: 'https://www.youtube.com/embed/dj5PMgd1M-Q',
+  previousURL: '06-arrays-and-loops',
+}
+
+## For Loops
+In the previous video, we discussed how loops work in general and then while loops specifically. Currently, we have an 8 by 8 grid of gems being randomly generated every time we press the play button. While our code is certainly getting better, I'll introduce some more improvements in this video for how we generate our grid. After that, I'll introduce how to keep track of the gems we've created.
+
+There's a better loop than the while loop that we can use to create our grid: the for loop. A while loop is great for looping if we don't know when our loop condition will be false (like when the user stops pressing a button). A for loop, on the other hand, is great for when you have a known starting number, an ending number, and a step or increment amount. Although a while loop can do the same thing, a for loop can be written in less code and is quicker to read / easier understand in this case.
+
+We know that our x and y positions will start at 0, end before 8, and increase by 1 for each iteration of the loop. Therefore, we can simplify our code by changing our while loop to a for loop. In general, we want to refactor our code, meaning improve it to be easier to understand, more efficient, and when possible, as in this case, less lines of code.
+
+A for loop works similarly to a while loop: it loops while a certain condition is true. However, the condition of a for loop is more specific: to loop while a number is between a starting point and an ending point. We already have all the elements a for loop needs: a loop variable, a loop condition, and something to change the loop variable in a way that would eventually make the condition false. Our loop variables are:
+
+```csharp
+int y = 0;
+int x = 0;
+```
+
+The loop conditions are:
+
+```csharp
+y < 8
+x < 8
+```
+
+And finally, our variable changes are:
+
+```csharp
+y++;
+x++;
+```
+
+Because we have these set up already, we can plug them straight into a for loop. First, type the “for” keyword. Then you need a pair of parentheses and a pair of curly brackets. Inside the parentheses, you first put the loop variable and a semicolon. Then put the loop condition and a semicolon. Finally, add the variable change, and no semicolon afterward. Our code to run each iteration still goes inside the curly brackets.
+
+```csharp
+for (int y = 0; y < 8; y++)
+{
+    for (int x = 0; x < 8; x++)
+    {
+        GameObject gem = Instantiate(_gemPrefabs[Random.Range(0, _gemPrefabs.Length)]);
+        gem.transform.position = new Vector3(x, y);
+    }
+}
+```
+
+## Custom Grid Size
+Another improvement we can make relates to the size of the grid. It's usually a good idea to expose variables in the Unity inspector for quick customization. Otherwise if we wanted to change the size in the future, we would have to change the code. First, create a private field called _gridSize after the _gemPrefabs field. Make sure to add the SerializeField attribute to expose the variable in the inspector.
+
+```csharp
+[SerializeField] private int _gridSize;
+```
+
+Now that we have a grid size, let's set a default value. If we give a default value for a field, then any time that Component (like GemManager) is added to a GameObject, the field will start out with the default value in the inspector. To do this, add an = after _gridSize and then 8. Previously we were just declaring that _gridSize exists, but now we are initializing it.
+
+```csharp
+[SerializeField] private int _gridSize = 8;
+```
+
+Now it's time to use the _gridSize field. In the for loops, replace 8 with the _gridSize.
+
+```csharp
+for (int y = 0; y < _gridSize; y++)
+{
+    for (int x = 0; x < _gridSize; x++)
+    {
+        GameObject gem = Instantiate(_gemPrefabs[Random.Range(0, _gemPrefabs.Length)]);
+        gem.transform.position = new Vector3(x, y);
+    }
+}
+```
+
+Going back to Unity, make sure the grid size appears in the inspector and is set to 8 by default. Then enter play mode and make sure our 8 by 8 grid still generates properly. Exit play mode and try changing the grid size. Then press play again to see if the grid was generated with the new size.
+
+I'll give you a challenge: find and use a C# attribute that will prevent a grid size of less than 3 from being entered in the inspector. Furthermore: try using Vector2 to create a grid of gems with a width and a height so we can have a rectangle grid, rather than a square grid.
+
+## Lists
+Now that we are generating our grid of gems, we need to keep track of the gems we've created. Because the number of currently visible or active gems can change, arrays won't work, but we want something similar. That's where lists come in. Lists are very similar to arrays, except you can add and remove elements from them. To use a list, we'll need to add another namespace to the top of the GemManager file: “System.Collections.Generic”.
+
+using System.Collections.Generic;
+
+You can add the line manually, but VS Code will actually add the line for us if we use the autocomplete system. After _gridSize, add a new private field called “_activeGems”. We won't serialize this field because we don't need to see it in the inspector. Give it a type of List, and as you type List it should show up in the autocomplete menu. Press enter and it should finish typing the word and add the namespace you need as well. After List comes angle brackets. Inside the angle brackets you specify what type of data will be stored in the list, which is GameObject.
+
+```csharp
+private List<GameObject> _activeGems;
+```
+
+Now that we have our list created, let's implement it. After creating a gem, add that gem to the list using the list's Add method:
+
+```csharp
+GameObject gem = Instantiate(_gemPrefabs[Random.Range(0, _gemPrefabs.Length)]);
+gem.transform.position = new Vector3(x, y);
+_activeGems.Add(gem);
+```
+
+To make sure all of the gems were added properly, let's log the list's Count, which is how many items are in the list. Add a Debug.Log statement after the outer loop.
+
+```csharp
+Debug.Log(_activeGems.Count);
+```
+
+Press play in Unity and see what happens. You should see a null reference exception (or error) in the console. That's because we are trying to use the list variable without giving it a value, which is a common mistake.
+
+If a variable has a type like object, array, list, or something similar, the default value is null (which means nothing or empty). Primitive types, like int or string, however, have different default values. Booleans default to false, numbers default to zero, and strings default to an empty string with no characters in it.
+
+Because this list is private, Unity won't set a value for it in the inspector. Therefore, we want to initialize the list ourselves so we can add to it. We can use the new keyword followed by the type to create a new list instance, like any other time we create a new instance of a class (Vector3 from earlier, for example).
+
+```csharp
+private List<GameObject> _activeGems = new List<GameObject>();
+```
+
+You may notice VS Code using dots to underline the “new” keyword. If you remember from the previous video, we can hover the cursor over the underlined text to see what VS Code is suggesting. The IDE says that we can simplify creating our new list by just saying new() and not giving a type. Since a variable can only have one type, C# lets us take some shortcuts when it knows what type a variable is. We will accept this change, by pressing “Quick Fix” and then “Use new()”.
+
+```csharp
+private List<GameObject> _activeGems = new();
+```
+
+As a reminder, VS Code may often give such suggestions. It is up to you to determine if you will take those suggestions or not. Sometimes, you will have to ignore it because the suggestion isn't applicable. For example, it also suggested earlier that we delete the _activeGems field because it wasn't being used at the time. What VS Code didn't know is that we were going use it. That suggestion is helpful though later on if we stop using a variable and forget to delete it everywhere we used to use it.
+
+Press play and make sure the grid generates properly. Check the console as well for the number 64. That's all we will cover for this video. Next I will introduce multi-dimensional arrays, properties, and how to use them for tracking what types of gems are where in the grid. Until then, God bless, and try thinking about what multi-dimensional arrays are and how you could make them.
